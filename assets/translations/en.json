@@ -1,0 +1,23 @@
+{
+  "costomer" : "Costomers",
+  "costomerinfo" : "Costomer info",
+  "userNo" : "User Number",
+  "noActivity" : "Number Of Activity",
+  "enterUsername" : "Enter Username",
+  "Username" : "Username",
+  "EnterUserNo" : "Enter User No",
+  "UserNo" : "User No",
+  "GenerateKey" : "Generate Key",
+  "ActiveNewOrder" : " Active New Order",
+  "Once" : "Once",
+  "More" : "More",
+  "EnterCount" : "Enter Count",
+  "Count" : "Count",
+  "UnLimited" : "UnLimited",
+  "DeactivateUser" : "Deactivate User",
+  "Save" : "Save",
+  "SuccessfullyAdded" : "Successfully Added",
+  "SuccessfullyAddedDetails" : "Add User Store Successfully"
+
+
+}

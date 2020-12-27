@@ -1,0 +1,21 @@
+{
+  "costomer" : "الزبائن",
+  "costomerinfo" : "معلومات الزبون",
+  "userNo" : "رقم الزبون",
+  "noActivity" : "عدد الطلبات المسموحة",
+  "enterUsername" : "ادخل الاسم",
+  "Username" : "الاسم",
+  "EnterUserNo" : "ادخل رقم الزبون",
+  "UserNo" : "رقم الزبون",
+  "GenerateKey" : "انشاء رمز التاكد",
+  "ActiveNewOrder" : " زبون فعال",
+  "Once" : "مرة واحدة",
+  "More" : "اكثر من مرة",
+  "EnterCount" : "ادخل العدد",
+  "Count" : "العدد",
+  "UnLimited" : "غير محدود",
+  "DeactivateUser" : "زبون غير فعال",
+  "Save" : "حفظ",
+  "SuccessfullyAdded" : "أضيف بنجاح",
+  "SuccessfullyAddedDetails" : "لقد تم اضافة هذا الزبون بنجاح"
+}
