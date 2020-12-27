@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_test/Controller/FetchData.dart';
+import 'package:flutter_app_test/Module/GeneratingKey.dart';
 import 'package:flutter_app_test/Module/UserStores.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -32,6 +33,7 @@ class _UserDefineState extends State<UserDefine> {
   bool enabledKey = true;
   Color colorKey =  Colors.lightGreen;
   UserStores userStores = new UserStores();
+  List<GeneratingKey> generatingKey = new List<GeneratingKey>();
 
   _UserDefineState(this.userStores){
     print("userStores = $userStores");
@@ -65,6 +67,18 @@ class _UserDefineState extends State<UserDefine> {
     API.addUserStores(jsonUserStore).then((response) {
       if(response.statusCode == 200) {
         notificationSuccessfully(context);
+      }
+    });
+  }
+
+  void generateUserKey (){
+    API.generateUserKey("1").then((response) {
+      if(response.statusCode == 200) {
+       setState(() {
+         Iterable list  = json.decode(response.body);
+         generatingKey = list.map((users) => new GeneratingKey.fromJson(users)).toList();
+         userKey.text = generatingKey[0].kEY.toString();
+       });
       }
     });
   }
@@ -127,6 +141,7 @@ class _UserDefineState extends State<UserDefine> {
     setState(() {
       enabledKey = false;
       colorKey = Colors.blueGrey;
+      generateUserKey();
     });
 
   }

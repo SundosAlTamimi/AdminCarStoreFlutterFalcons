@@ -25,6 +25,15 @@ class API {
      return res;
    }
 
+   static Future generateUserKey(String val) async {
+     print("generateUserKey");
+     var body = {"GENERATING_KEY": val};
+     final res = await http.post(UserUrl.generateKey , body: body);
+     print(UserUrl.generateKey);
+     print(res.statusCode);
+     return res;
+   }
+
   //
   //  static Future setUserAuth(String userNo , String key) async {
   //    String product = "={\"USER_NO\":\"$userNo\",\"KEY\":\"$key\"}";
