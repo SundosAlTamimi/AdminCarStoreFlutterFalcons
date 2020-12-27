@@ -77,7 +77,7 @@ class _UserDefineState extends State<UserDefine> {
        setState(() {
          Iterable list  = json.decode(response.body);
          generatingKey = list.map((users) => new GeneratingKey.fromJson(users)).toList();
-         userKey.text = generatingKey[0].kEY.toString();
+         userKey.text = generatingKey[0].kEY;
        });
       }
     });

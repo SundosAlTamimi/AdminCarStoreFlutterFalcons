@@ -1,5 +1,5 @@
 class GeneratingKey {
-  int kEY;
+  String kEY;
 
   GeneratingKey({this.kEY});
 
