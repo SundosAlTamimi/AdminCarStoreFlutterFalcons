@@ -21,6 +21,7 @@ class MyOrdersStoreDetails extends StatefulWidget {
 var run = true;
 
 class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
+
   var orders = new List<MyOrdersModule>();
   int quantity = 0;
   IconData faverats ;
@@ -65,6 +66,24 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
     });
   }
 
+  getMyOrderStoreDetails() async{
+    runbefore = true;
+    await API.getMyOrderStoreDetails(serialNo , vouchNo).then((response) {
+      setState(() {
+        userStore = response;
+        for(int i=0 ; i< userStore.length ; i++)
+          colorStates.add(Colors.white);
+        print(" userStore = $userStore");
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    getMyOrderStoreDetails();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -77,72 +96,42 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              if(userStore.isNotEmpty)
               Center(
-                child: FutureBuilder<List<MyOrdersStoreDetailsModule>>(
-                  future: API.getMyOrderStoreDetails(serialNo , vouchNo),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<MyOrdersStoreDetailsModule>> snapshot) {
-                    if (snapshot.hasData) {
-                      print("have data");
-                      userStore = snapshot.data;
-                      for(int i=0 ; i< userStore.length ; i++)
-                        colorStates.add(Colors.white);
-                      return getSnapshot(userStore);
-                    } else if (snapshot.hasError) {
-                      print(" error = ${snapshot.error} ");
-                      return Text("No Data");
-                    }
-                    return Container(
-                      height: 50.0,
-                      width: double.infinity,
-                      child: Center(
-                        child: ColorLoader(
-                          dotOneColor: Colors.lightGreen,
-                          dotTwoColor: Colors.lightGreen,
-                          dotThreeColor: Colors.lightGreen,
-                          dotIcon: Icon(Icons.adjust),
-                          dotType: DotType.circle,
-                          duration: Duration(seconds: 2),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                child: getSnapshot(userStore)
               ),
-              _checkoutSection()
+              // _checkoutSection()
             ],
           ),
         ),
       ),
+      bottomNavigationBar:_checkoutSection(),
     );
   }
 
   Widget getSnapshot(List<MyOrdersStoreDetailsModule> myOrders) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 28.0 , vertical: 5.0 ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListView.builder(
-            physics: const AlwaysScrollableScrollPhysics(),
-            itemCount: myOrders?.length ?? 0,
-            itemExtent: 170.0,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return buildItemOrder(myOrders[index],context,index);
-            },
-          ),
-        ],
-      ),
+    return ListView.builder(
+      // controller: _controller,
+      physics: const AlwaysScrollableScrollPhysics(),
+      itemCount: myOrders?.length ?? 0,
+      // itemExtent: 170.0,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return buildItemOrder(myOrders[index],context,index);
+      },
     );
   }
 
   Widget buildItemOrder(MyOrdersStoreDetailsModule product , context , int index) {
-    print(userStore[index].oRDERSTATE);
-    if(product.oRDERSTATE == "1")
+    print(product.oRDERSTATE);
+    if(product.oRDERSTATE == "1") {
+      product.oRDERSTATE = "1";
       colorStates[index] = Colors.lightGreen;
-    else if(product.oRDERSTATE == "2")
+    }
+    else if(product.oRDERSTATE == "2") {
+      product.oRDERSTATE = "2";
       colorStates[index] = Colors.red;
+    }
 
     return Container(
       padding: const EdgeInsets.all(0),
@@ -160,7 +149,7 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
           ),
         ],
       ),
-      height: 180,
+      height: 130,
       child: Row(
         children: <Widget>[
           Container(
@@ -226,9 +215,9 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
                         tooltip: 'checked',
                         onPressed: () {
                           setState(() {
-                            userStore[index].oRDERSTATE = "1";
                             product.oRDERSTATE = "1";
-                            print(userStore[index].oRDERSTATE);
+                            product.oRDERSTATE = "1";
+                            print(product.oRDERSTATE);
                           });
                         },
                       ),
@@ -237,9 +226,9 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
                         tooltip: 'rejected',
                         onPressed: () {
                           setState(() {
-                            userStore[index].oRDERSTATE = "2";
                             product.oRDERSTATE = "2";
-                            print(userStore[index].oRDERSTATE);
+                            product.oRDERSTATE = "2";
+                            print(product.oRDERSTATE);
                             // colorStates = Colors.red;
                           });
                         },
@@ -257,72 +246,44 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
 
   Widget _checkoutSection() {
     return Container(
-      height: 150.0,
+      height: 90.0,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         borderRadius:  BorderRadius.only(topRight:  Radius.circular(40),topLeft:  Radius.circular(40)),
         color:  Colors.white,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 15.0),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          "${AppLocalizations.of(context).translate('TOTAL')}",
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
-                        ),
-                      ),
-                      Text("\$ 200",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 15.0),
+        child: Material(
+          color: Theme
+              .of(context)
+              .primaryColor,
+          elevation: 3.0,
+          child: InkWell(
+            splashColor: Theme
+                .of(context)
+                .primaryColor,
+            onTap: () {
+              String jsonUserStore = jsonEncode(userStore);
+              print(jsonUserStore);
+              updateOrderStatus(jsonUserStore);
+            },
+            child: Container(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text(
+                  "${AppLocalizations.of(context).translate('Checkout')}",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: Material(
-                    color: Theme
-                        .of(context)
-                        .primaryColor,
-                    elevation: 3.0,
-                    child: InkWell(
-                      splashColor: Theme
-                          .of(context)
-                          .primaryColor,
-                      onTap: () {
-                        String jsonUserStore = jsonEncode(userStore);
-                        print(jsonUserStore);
-                        updateOrderStatus(jsonUserStore);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(
-                            "${AppLocalizations.of(context).translate('Checkout')}",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
