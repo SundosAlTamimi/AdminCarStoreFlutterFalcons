@@ -16,6 +16,14 @@
   "UnLimited" : "غير محدود",
   "DeactivateUser" : "زبون غير فعال",
   "Save" : "حفظ",
+  "Update" : "تحديث",
+  "SuccessfullyUpdate" : "تحديث بنجاح",
+  "SuccessfullyUpdateDetails" : "تحديث معلومات المستخدم بنجاح",
   "SuccessfullyAdded" : "أضيف بنجاح",
-  "SuccessfullyAddedDetails" : "لقد تم اضافة هذا الزبون بنجاح"
+  "SuccessfullyAddedDetails" : "لقد تم اضافة هذا الزبون بنجاح",
+  "MyOrder" : "طلباتي",
+  "StoreOrder" : "طلب المتجر",
+  "ItemOfOrder" : "عناصر الطلب",
+  "Price" : "السعر",
+  "SubTotal" : "المجموع الجزئي"
 }

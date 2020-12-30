@@ -1,5 +1,7 @@
 
-    class Constants {
+    import 'package:flutter/cupertino.dart';
+
+class Constants {
         static const Map header = {"Content-Type":"application/x-www-form-urlencoded",
             "Accept":"application/json",
             "Accept-Language": "en"};
@@ -13,9 +15,15 @@
 
     class UserUrl {
         static const addUserStores = "${Constants.apiUrl}export.php";
-
-  // static var generateKey;
         static const generateKey = "${Constants.apiUrl}export.php";
+        static const updateUserStores  = "${Constants.apiUrl}export.php";
+    }
+
+    class Order{
+        static const getOrdersUrl = "${Constants.apiUrl}import.php?FLAG=4";
+        static const getMyOrderStore = "${Constants.apiUrl}import.php?FLAG=5&STORES_SERIAL=";
+        static const getMyOrderStoreDetails = "${Constants.apiUrl}import.php?FLAG=6&STORE_SERIAL=";
+        static const updateOrderStatus = "${Constants.apiUrl}export.php";
     }
 
     // class ProductsNewOrder {
@@ -43,10 +51,7 @@
     //     static const getMyOrderInfo = "${Constants.apiUrl}P_GetMyOrderInfo";
     // }
     //
-    // class Order{
-    //     static const getOrdersUrl = "${Constants.apiUrl}P_GetMyOrders";
-    //     static const getMyOrderDetails = "${Constants.apiUrl}P_GetMyOrderDetails";
-    // }
+
     //
     // class Notification{
     //     static const getNotifications = "${Constants.apiUrl}P_GetNotifications";

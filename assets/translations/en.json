@@ -16,8 +16,16 @@
   "UnLimited" : "UnLimited",
   "DeactivateUser" : "Deactivate User",
   "Save" : "Save",
+  "Update" : "Update",
   "SuccessfullyAdded" : "Successfully Added",
-  "SuccessfullyAddedDetails" : "Add User Store Successfully"
-
-
+  "SuccessfullyAddedDetails" : "Add User Store Successfully",
+  "SuccessfullyUpdate" : "Successfully Update",
+  "SuccessfullyUpdateDetails" : "Update User Store Successfully",
+  "MyOrder" : "My Order",
+  "StoreOrder" : "Store Order",
+  "ItemOfOrder" : "Items Of Order",
+  "Price" : "Price",
+  "SubTotal" : "Sub Total",
+  "TOTAL" : "TOTAL",
+  "Checkout" : "Save"
 }

@@ -29,6 +29,7 @@ class _UserDefineState extends State<UserDefine> {
   bool visiableCount = false;
   bool activeOrder = false;
   bool deactiveOrder = false;
+  bool newUser = false;
   bool run = true;
   bool enabledKey = true;
   Color colorKey =  Colors.lightGreen;
@@ -42,12 +43,12 @@ class _UserDefineState extends State<UserDefine> {
     colorKey =  Colors.lightGreen;
   }
 
-  static void notificationSuccessfully(context){
+  static void notificationSuccessfully(context ,String message ,String messageDetails){
     Alert(
       context: context,
       image: Image.asset("assets/images/success.png" , width: 50 , height: 50,),
-      title: "${AppLocalizations.of(context).translate('SuccessfullyAdded')}",
-      desc: "${AppLocalizations.of(context).translate('SuccessfullyAddedDetails')}",
+      title: "${AppLocalizations.of(context).translate(message)}",
+      desc: "${AppLocalizations.of(context).translate(messageDetails)}",
       buttons: [ DialogButton(
         color: Colors.lightGreen,
         child: Text(
@@ -63,10 +64,24 @@ class _UserDefineState extends State<UserDefine> {
     ).show();
   }
 
-  void addUserStores (String jsonUserStore){
+  void addUserStores(String jsonUserStore){
+    print("newUser 1 $newUser");
     API.addUserStores(jsonUserStore).then((response) {
       if(response.statusCode == 200) {
-        notificationSuccessfully(context);
+        notificationSuccessfully(context , 'SuccessfullyAdded' , 'SuccessfullyAddedDetails');
+        print(response.body.toString());
+      }
+    });
+  }
+
+  void updateUserStores(String jsonUserStore){
+    print("newUser 1 $newUser");
+    print("jsonUserStore $jsonUserStore");
+    API.updateUserStores(jsonUserStore).then((response) {
+      if(response.statusCode == 200) {
+        notificationSuccessfully(context ,  'SuccessfullyUpdate' , 'SuccessfullyUpdateDetails');
+        print(response.body.toString());
+
       }
     });
   }
@@ -103,13 +118,20 @@ class _UserDefineState extends State<UserDefine> {
     }
     String jsonUserStore = jsonEncode(userStores);
     print(jsonUserStore);
-    addUserStores(jsonUserStore);
+    print(newUser);
+    print("newUser 2 $newUser");
+    if(newUser)
+      addUserStores(jsonUserStore);
+    else
+      updateUserStores(jsonUserStore);
   }
 
   void checkObject(){
     setState(() {
       if(userStores.uSERNAME != null){
+        newUser = false;
         print(userStores.uSERNAME);
+        print("newUser 1 $newUser");
         colorKey = Colors.blueGrey;
         enabledKey = false;
         userName.text = userStores.uSERNAME ;
@@ -128,6 +150,7 @@ class _UserDefineState extends State<UserDefine> {
             activeMore.text = userStores.nOOFACTIVE;
           }
         } else{
+          newUser = true;
           activeOrder = false;
           deactiveOrder = true;
         }
@@ -151,6 +174,7 @@ class _UserDefineState extends State<UserDefine> {
     if(run) {
       enabledKey = true;
       colorKey =  Colors.lightGreen;
+      // newUser = true;
       checkObject();
       run = false;
     }
@@ -331,21 +355,32 @@ class _UserDefineState extends State<UserDefine> {
                             borderRadius: BorderRadius.circular(18.0),
                             side: BorderSide(color: Colors.lightGreen)
                         ),
-                          color: Colors.lightGreen,
-                          textColor: Colors.white,
-                          child: Text("${AppLocalizations.of(context).translate('Save')}"),
-                          onPressed: () {
-                            saveUserStores();
-                          },
-                        )
+                        color: Colors.lightGreen,
+                        textColor: Colors.white,
+                        child: buildTextButton(context),
+                        onPressed: () {
+                          saveUserStores();
+                        },
                       ),
                     ),
+                  ),
                 ],
               ),
             ),
           ),
         ),
     );
+  }
+
+  Text buildTextButton(BuildContext context) {
+    if (userStores.uSERNAME != null) {
+      newUser = false;
+      return Text("${AppLocalizations.of(context).translate('Update')}");
+    }
+    else{
+      newUser = true;
+      return Text("${AppLocalizations.of(context).translate('Save')}");
+    }
   }
 
 }

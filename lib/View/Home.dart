@@ -6,6 +6,7 @@ import 'package:flutter_app_test/View/loader/Loader.dart';
 import 'package:mdi/mdi.dart';
 import '../app_localizations.dart';
 import 'UserDefine.dart';
+import 'drawer.dart';
 import 'loader/dot_type.dart';
 
 class Home extends StatefulWidget {
@@ -22,7 +23,15 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
+      drawer:ClipPath(
+        // clipper: OvalRightBorderClipper(),
+        child: Container(
+          width: 250.0,
+          child: Drawer(
+            child: AppDrawer(),
+          ),
+        ),
+      ),
       appBar: AppBar(
           title: Text(AppLocalizations.of(context).translate('costomer'),),
         ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_test/View/MyOrdersStoreDetails.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'View/Home.dart';
+import 'View/MyOrdersStore.dart';
+import 'View/MyOrders.dart';
 import 'View/UserDefine.dart';
 import 'app_localizations.dart';
 
@@ -47,8 +50,9 @@ void main() {
         routes: <String, WidgetBuilder>{
             '/': (BuildContext context) => Home(),
             '/userDefine': (BuildContext context) => UserDefine(),
-
-
+            '/myOrder': (BuildContext context) => MyOrders(),
+            '/myOrderStore': (BuildContext context) => MyOrdersStore.c(),
+            '/myOrderStoreDetails': (BuildContext context) => MyOrdersStoreDetails.c(),
         },
       ),
     );
