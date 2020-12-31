@@ -80,7 +80,7 @@ class _MyOrdersStoreState extends State<MyOrdersStore> {
       child: ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
         itemCount: myOrders?.length ?? 0,
-        itemExtent: 100.0,
+        itemExtent: 120.0,
         itemBuilder: (context, index) {
           return buildOrders(myOrders[index],context);
         },
@@ -95,7 +95,7 @@ class _MyOrdersStoreState extends State<MyOrdersStore> {
         builder: (BuildContext context) {
           return Container(
             width: 400.0,
-            height: 130.0,
+            height: 150.0,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                   horizontal: 8.0, vertical: 4.0),
@@ -140,7 +140,7 @@ class _MyOrdersStoreState extends State<MyOrdersStore> {
                                   children: <Widget>[
                                     // Dot(color: Color(order.color) ,icon:Icon(Icons.adjust),radius: 14,type: DotType.circle,),
 
-                                    Text("Order by : ",
+                                    Text(AppLocalizations.of(context).translate('Orderby')+" : ",
                                       style: TextStyle(fontSize: 17.0 , fontWeight: FontWeight.bold),),
                                     Text(order.vOHDATE,
                                       style: TextStyle(fontSize: 12.0),),
@@ -149,11 +149,11 @@ class _MyOrdersStoreState extends State<MyOrdersStore> {
                                 new Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Text("Total : " + order.vOHTOTAL,
+                                    Text(AppLocalizations.of(context).translate('TOTAL')+" : " + order.vOHTOTAL,
                                         style: priceTextStyle),
                                     Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 12.0,)
                                   ],),
-                                Text("Order State: ${order.oRDERSTATE}",
+                                Text(AppLocalizations.of(context).translate('OrderState')+" : ${order.oRDERSTATE}",
                                   style: TextStyle(fontSize: 12.0),),
 
                               ],

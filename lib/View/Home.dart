@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
           });
         },
         backgroundColor: Colors.lightGreen,
-        child: Icon(Icons.add),
+        child: Icon(Icons.add , color:Colors.white),
       ),
     );
   }

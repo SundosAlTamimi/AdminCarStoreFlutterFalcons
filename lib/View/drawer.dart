@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../app_localizations.dart';
+
 class AppDrawer extends StatefulWidget {
   @override
   AppDrawerState createState() => AppDrawerState();
@@ -49,7 +51,7 @@ class AppDrawerState extends State<AppDrawer> {
                 leading: Icon(Icons.home, color: Theme
                     .of(context)
                     .accentColor),
-                title: Text('Home'),
+                title: Text(AppLocalizations.of(context).translate('Home')),
                 onTap: () {
                   //Navigator.pop(context);
                   Navigator.pushReplacementNamed(context, '/');
@@ -60,9 +62,9 @@ class AppDrawerState extends State<AppDrawer> {
                     color: Theme
                         .of(context)
                         .accentColor),
-                title: Text('My Orders'),
+                title: Text(AppLocalizations.of(context).translate('MyOrders')),
                 onTap: () {
-                  Navigator.pushNamed(context , '/myOrder');
+                  Navigator.pushNamed(context, '/myOrder');
                 },
               ),
               Divider(),
@@ -71,7 +73,7 @@ class AppDrawerState extends State<AppDrawer> {
                     color: Theme
                         .of(context)
                         .accentColor),
-                title: Text('Languages'),
+                title: Text(AppLocalizations.of(context).translate('Languages')),
                 onTap: () {
                 },
               ),

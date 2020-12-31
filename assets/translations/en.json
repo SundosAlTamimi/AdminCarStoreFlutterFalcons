@@ -27,5 +27,11 @@
   "Price" : "Price",
   "SubTotal" : "Sub Total",
   "TOTAL" : "TOTAL",
-  "Checkout" : "Save"
+  "Checkout" : "Save",
+  "Home": "Home",
+  "MyOrders": "My Orders",
+  "Languages": "Languages",
+  "NumOfOrders": "Num Of Orders",
+  "Orderby": "Order by",
+  "OrderState": "Order State"
 }

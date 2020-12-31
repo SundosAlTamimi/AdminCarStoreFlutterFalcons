@@ -70,7 +70,7 @@ class _MyOrdersState extends State<MyOrders> {
       child: ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
         itemCount: myOrders?.length ?? 0,
-        itemExtent: 100.0,
+        itemExtent: 120.0,
         itemBuilder: (context, index) {
           return buildOrders(myOrders[index],context);
         },
@@ -86,7 +86,7 @@ class _MyOrdersState extends State<MyOrders> {
         builder: (BuildContext context) {
           return Container(
             width: 400.0,
-            height: 130.0,
+            height: 140.0,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                   horizontal: 8.0, vertical: 4.0),
@@ -135,31 +135,12 @@ class _MyOrdersState extends State<MyOrders> {
                                 new Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Text("Num Of Orders : " + order.oRDERS,
+                                    Text(AppLocalizations.of(context).translate('NumOfOrders')+" : " + order.oRDERS,
                                         style: priceTextStyle),
                                     Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 12.0,)
                                   ],),
-                                Text("user No: ${order.uSERNO}",
+                                Text(AppLocalizations.of(context).translate('UserNo')+" : ${order.uSERNO}",
                                   style: TextStyle(fontSize: 12.0),),
-//                                      Text("Order Date:  " + order.orderDate,
-//                                          style: priceTextStyle),
-//                                       SizedBox(
-//                                         height: 5,
-//                                       ),
-//                                      Text("Discount Total: " + order.discountTotal.toString(),
-//                                        style: TextStyle(fontSize: 12.0),),
-//                                      SizedBox(
-//                                        height: 5,
-//                                      ),
-//                                       Text("Net Total: " + order.netTotal.toString(),
-//                                         style: TextStyle(fontSize: 12.0),),
-//                                      new Row(
-//                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                        children: <Widget>[
-//                                          Text(""),
-//                                          Text("Net Total: " + order.netTotal.toString(),
-//                                            style: TextStyle(fontSize: 12.0),),
-//                                        ],),
                               ],
                             ),
                           ),

@@ -25,5 +25,13 @@
   "StoreOrder" : "طلب المتجر",
   "ItemOfOrder" : "عناصر الطلب",
   "Price" : "السعر",
-  "SubTotal" : "المجموع الجزئي"
+  "SubTotal" : "المجموع الجزئي",
+  "Home": "الرئيسية",
+  "MyOrders": "طلباتي",
+  "Languages": "اللغة",
+  "Checkout" : "حفظ",
+  "TOTAL" : "المجموع",
+  "NumOfOrders": "عدد الطلبات",
+  "Orderby": "طلب بتاريخ",
+  "OrderState": "حالة الطلبية"
 }

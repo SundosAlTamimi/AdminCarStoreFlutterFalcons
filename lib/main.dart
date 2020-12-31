@@ -14,7 +14,7 @@ void main() {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             primaryColor: Colors.lightGreen,
-            accentColor: Colors.lightBlue[900],
+            accentColor: Colors.lightGreen,
             fontFamily: locale.languageCode == 'ar' ? 'Dubai' : 'Lato'),
         supportedLocales: [
             Locale('en', 'GB'),

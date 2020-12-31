@@ -23,9 +23,6 @@ var run = true;
 class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
 
   var orders = new List<MyOrdersModule>();
-  int quantity = 0;
-  IconData faverats ;
-  var runbefore = true;
   String serialNo;
   String vouchNo;
   List<Color> colorStates = new List<Color>();
@@ -67,7 +64,6 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
   }
 
   getMyOrderStoreDetails() async{
-    runbefore = true;
     await API.getMyOrderStoreDetails(serialNo , vouchNo).then((response) {
       setState(() {
         userStore = response;
@@ -149,7 +145,7 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
           ),
         ],
       ),
-      height: 130,
+      height: 150,
       child: Row(
         children: <Widget>[
           Container(
