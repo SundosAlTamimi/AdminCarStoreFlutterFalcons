@@ -86,19 +86,10 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
         title: Text(AppLocalizations.of(context).translate('ItemOfOrder'),),
       ),
       body: DefaultTabController(
-        length: 500,
+        length: 1000,
         child: Scaffold(
           key: scaffoldKey,
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              if(userStore.isNotEmpty)
-              Center(
-                child: getSnapshot(userStore)
-              ),
-              // _checkoutSection()
-            ],
-          ),
+          body: getSnapshot(userStore),
         ),
       ),
       bottomNavigationBar:_checkoutSection(),
@@ -145,7 +136,7 @@ class _MyOrdersStoreDetailsState extends State<MyOrdersStoreDetails> {
           ),
         ],
       ),
-      height: 150,
+      height: 130,
       child: Row(
         children: <Widget>[
           Container(

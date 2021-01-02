@@ -29,34 +29,43 @@ class _MyOrdersState extends State<MyOrders> {
         length: 500,
         child: Scaffold(
           key: scaffoldKey,
-          body: Center(
-            child: FutureBuilder<List<MyOrdersModule>>(
-              future: API.getMyOrders(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<MyOrdersModule>> snapshot) {
-                if (snapshot.hasData) {
-                  print("have data");
-                  List<MyOrdersModule> userStore = snapshot.data;
-                  return getSnapshot(userStore);
-                } else if (snapshot.hasError) {
-                  print(" error = ${snapshot.error} ");
-                  return Text("No Data");
-                }
-                return Container(
-                  height: 50.0,
-                  width: double.infinity,
-                  child: Center(
-                    child: ColorLoader(
-                      dotOneColor: Colors.lightGreen,
-                      dotTwoColor: Colors.lightGreen,
-                      dotThreeColor: Colors.lightGreen,
-                      dotIcon: Icon(Icons.adjust),
-                      dotType: DotType.circle,
-                      duration: Duration(seconds: 2),
+          body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.white, Colors.lightGreen[200]]
+              ),
+            ),
+            child: Center(
+              child: FutureBuilder<List<MyOrdersModule>>(
+                future: API.getMyOrders(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<MyOrdersModule>> snapshot) {
+                  if (snapshot.hasData) {
+                    print("have data");
+                    List<MyOrdersModule> userStore = snapshot.data;
+                    return getSnapshot(userStore);
+                  } else if (snapshot.hasError) {
+                    print(" error = ${snapshot.error} ");
+                    return Text("No Data");
+                  }
+                  return Container(
+                    height: 50.0,
+                    width: double.infinity,
+                    child: Center(
+                      child: ColorLoader(
+                        dotOneColor: Colors.lightGreen,
+                        dotTwoColor: Colors.lightGreen,
+                        dotThreeColor: Colors.lightGreen,
+                        dotIcon: Icon(Icons.adjust),
+                        dotType: DotType.circle,
+                        duration: Duration(seconds: 2),
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ),
